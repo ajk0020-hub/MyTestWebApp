@@ -37,14 +37,15 @@ namespace MyTestWebApp
         }
 
 
-        [WebMethod]
+        [WebMethod(true)]
+        [ScriptMethod]
         public static List<Employee> GetEmployees()
         {
             System.Diagnostics.Debug.WriteLine("Fetching Employees");
             List<Employee> employees = new List<Employee>();
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnStringDb"].ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDbConnString"].ToString()))
             {
-                string query = "SELECT * FROM Employees";
+                string query = "SELECT * FROM Employee";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -52,11 +53,11 @@ namespace MyTestWebApp
                 {
                     Employee employee = new Employee
                     {
-                        FirstName = reader["FirstName"].ToString(),
-                        LastName = reader["LastName"].ToString(),
+                        FirstName = reader["First Name"].ToString(),
+                        LastName = reader["Last Name"].ToString(),
                         Role = reader["Role"].ToString(),
                         Salary = Convert.ToInt32(reader["Salary"]),
-                        Employed = Convert.ToBoolean(reader["Employed"])
+                        Employed = Convert.ToBoolean(reader["Active"])
                     };
                     employees.Add(employee);
                 }
