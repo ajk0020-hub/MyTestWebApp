@@ -7,7 +7,7 @@
         <section class="row" aria-labelledby="aspnetTitle">
             <h1 id="aspnetTitle">Employee Search</h1>
         </section>
-
+        <a class="btn bg-dark text-light" href="AddEmployee.aspx">Add Employee</a>
         <div>
             <table id="gvEmployees" class="table table-striped">
                 <thead>
