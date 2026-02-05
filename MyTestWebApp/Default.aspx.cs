@@ -20,19 +20,6 @@ namespace MyTestWebApp
             if (!this.IsPostBack)
             {
                 System.Diagnostics.Debug.WriteLine("Page Loaded");
-                DataTable dummy = new DataTable();
-                dummy.Columns.Add("FirstName");
-                dummy.Columns.Add("LastName");
-                dummy.Columns.Add("Role");
-                dummy.Columns.Add("Salary");
-                dummy.Columns.Add("Employed");
-                dummy.Rows.Add();
-                gvEmployees.DataSource = dummy;
-                gvEmployees.DataBind();
-
-                //Required for jQuery DataTables to work.
-                gvEmployees.UseAccessibleHeader = true;
-                gvEmployees.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
 
