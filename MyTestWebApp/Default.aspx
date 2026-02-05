@@ -1,15 +1,23 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MyTestWebApp._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <!-- DataTables and Bootstrap Icons CSS references -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
     <main>
+        <!-- Page Title -->
         <section class="row" aria-labelledby="aspnetTitle">
             <h1 id="aspnetTitle">Employee Search</h1>
         </section>
+
+        <!-- Add Employee Button -->
         <a class="btn bg-dark text-light" href="AddEmployee.aspx">Add Employee</a>
+
+        <!-- Employee Data Table -->
         <div>
-            <table id="gvEmployees" class="table table-striped">
+            <table id="EmployeesTable" class="table table-striped">
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -25,9 +33,12 @@
             </table>
         </div>
 
+        <!-- Scripts -->
         <script type="text/javascript" src="https://cdn.datatables.net/2.3.7/js/dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript">
+
+            //JQuery to get all employees in the database
             $(function () {
                 $.ajax({
                     type: "POST",
@@ -45,10 +56,12 @@
                 });
             });
 
+            //Assigns the employees' data to EmployeesTable
             function OnSuccess(response) {
-                $('#gvEmployees').DataTable(
+                $('#EmployeesTable').DataTable(
                     {
                         columnDefs: [
+                            //Prepends a $ to the salary data
                             {
                                 targets: 3,
                                 render: function (data, type, row) {
@@ -58,6 +71,8 @@
                                     return data;
                                 }
                             },
+
+                            //Changes the active data from true/false to Active/Inactive {will be changed to check/x icons}
                             {
                                 targets: 4,
                                 render: function (data, type, row) {

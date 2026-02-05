@@ -2,14 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace MyTestWebApp
 {
@@ -19,16 +15,15 @@ namespace MyTestWebApp
         {
             if (!this.IsPostBack)
             {
-                System.Diagnostics.Debug.WriteLine("Page Loaded");
+
             }
         }
 
-
+        // Returns a list of employees from the database upon AJAX request
         [WebMethod(true)]
         [ScriptMethod]
         public static List<Employee> GetEmployees()
         {
-            System.Diagnostics.Debug.WriteLine("Fetching Employees");
             List<Employee> employees = new List<Employee>();
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDbConnString"].ToString()))
             {
