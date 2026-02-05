@@ -29,7 +29,6 @@
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript">
             $(function () {
-                console.log("Calling ajax now.");
                 $.ajax({
                     type: "POST",
                     url: "Default.aspx/GetEmployees",
@@ -47,7 +46,6 @@
             });
 
             function OnSuccess(response) {
-                console.log("Succeeded response");
                 $('#gvEmployees').DataTable(
                     {
                         columnDefs: [

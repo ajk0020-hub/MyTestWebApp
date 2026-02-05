@@ -36,7 +36,6 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" runat="server" href="~/">Employee Search</a>
