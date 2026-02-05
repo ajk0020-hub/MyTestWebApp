@@ -66,7 +66,7 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (response) {
                     if (response.d === true) {
-                        alert("Employee's data saved");
+                        //alert("Employee's data saved");
                         window.location.href = "Default.aspx";
                     }
                     else {
