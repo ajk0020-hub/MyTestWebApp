@@ -27,7 +27,7 @@ namespace MyTestWebApp
             List<Employee> employees = new List<Employee>();
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDbConnString"].ToString()))
             {
-                string query = "SELECT * FROM Employee";
+                string query = "SELECT * FROM Employees";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();

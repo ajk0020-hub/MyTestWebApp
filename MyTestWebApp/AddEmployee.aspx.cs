@@ -46,7 +46,7 @@ namespace MyTestWebApp
             int check = 0;
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDbConnString"].ToString()))
             {
-                string query = "INSERT INTO Employee ([First Name], [Last Name], [Role], [Salary], [Active]) VALUES (@FirstName, @LastName, @Role, @Salary, @Active)";
+                string query = "INSERT INTO Employees ([First Name], [Last Name], [Role], [Salary], [Active]) VALUES (@FirstName, @LastName, @Role, @Salary, @Active)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@FirstName", FirstName);
                 cmd.Parameters.AddWithValue("@LastName", LastName);

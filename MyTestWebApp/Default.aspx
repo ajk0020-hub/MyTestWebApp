@@ -4,7 +4,7 @@
 
     <!-- DataTables and Bootstrap Icons CSS references -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <main>
         <!-- Page Title -->
@@ -20,6 +20,7 @@
             <table id="EmployeesTable" class="table table-striped">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Role</th>
@@ -78,10 +79,10 @@
                                 render: function (data, type, row) {
                                     if (type === 'display') {
                                         if (data === true) {
-                                            return 'Active';
+                                            return '<i class="bi bi-check-lg"></i>';
                                         }
                                         else if (data === false) {
-                                            return 'Inactive';
+                                            return '<i class="bi bi-x-lg"></i>';
                                         }
                                         else {
                                             return data;
@@ -97,7 +98,13 @@
                         bSort: true,
                         bPaginate: true,
                         data: response.d,
-                        columns: [{ 'data': 'FirstName' },
+                        columns: [
+                            {
+                                'data': null,
+                                'orderable': false,
+                                'render': function(){ return '<i class="bi bi-pencil-square"></i>'; }
+                            },
+                        { 'data': 'FirstName' },
                         { 'data': 'LastName' },
                         { 'data': 'Role' },
                         { 'data': 'Salary' },
