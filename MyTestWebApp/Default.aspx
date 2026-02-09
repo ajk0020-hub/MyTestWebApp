@@ -20,12 +20,6 @@
             <table id="EmployeesTable" class="table table-striped">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Role</th>
-                        <th>Salary</th>
-                        <th>Employed</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,37 +55,6 @@
             function OnSuccess(response) {
                 $('#EmployeesTable').DataTable(
                     {
-                        columnDefs: [
-                            //Prepends a $ to the salary data
-                            {
-                                targets: 3,
-                                render: function (data, type, row) {
-                                    if (type === 'display') {
-                                        return '$' + data;
-                                    }
-                                    return data;
-                                }
-                            },
-
-                            //Changes the active data from true/false to Active/Inactive {will be changed to check/x icons}
-                            {
-                                targets: 4,
-                                render: function (data, type, row) {
-                                    if (type === 'display') {
-                                        if (data === true) {
-                                            return '<i class="bi bi-check-lg"></i>';
-                                        }
-                                        else if (data === false) {
-                                            return '<i class="bi bi-x-lg"></i>';
-                                        }
-                                        else {
-                                            return data;
-                                        }
-                                    }
-                                    return data;
-                                }
-                            }
-                        ],
                         bLengthChange: true,
                         lengthMenu: [[10, 25, 50], [10, 25, 50]],
                         bFilter: true,
@@ -99,16 +62,64 @@
                         bPaginate: true,
                         data: response.d,
                         columns: [
+                        {
+                            'data': 'EmployeeId',
+                            'title': '',
+                            'orderable': false,
+                            'width': '1px',
+                                'render': function (data, type, row) {
+                                    if (type === 'display') {
+                                        return '<a class="bi bi-pencil-square" href="EditEmployee?id=' + encodeURIComponent(data) + '"></a>';
+                                    }
+                                    return data;
+                            }
+                        },
+                        {
+                            'data': 'FirstName',
+                            'title': 'First Name'
+                        },
+                        {
+                            'data': 'LastName',
+                            'title': 'Last Name'
+                        },
+                        {
+                            'data': 'Role',
+                            'title': 'Role'
+                        },
+                        {
+                            'data': 'Salary',
+                            'title': 'Salary',
+                            'render': function (data, type, row) {
+                                if (type === 'display') {
+                                    return '$' + data;
+                                }
+                                return data;
+                            }
+                        },
+                        {
+                            'data': 'Employed',
+                            'title': 'Employed',
+                            'render': function (data, type, row) {
+                                if (type === 'display') {
+                                    if (data === true) {
+                                        return '<i class="bi bi-check-lg" ></i>';
+                                    }
+                                    else if (data === false) {
+                                        return '<i class="bi bi-x-lg"></i>';
+                                    }
+                                    else {
+                                        return data;
+                                    }
+                                }
+                                return data;
+                            }
+                        }],
+                        columnDefs: [
                             {
-                                'data': null,
-                                'orderable': false,
-                                'render': function(){ return '<i class="bi bi-pencil-square"></i>'; }
-                            },
-                        { 'data': 'FirstName' },
-                        { 'data': 'LastName' },
-                        { 'data': 'Role' },
-                        { 'data': 'Salary' },
-                        { 'data': 'Employed' }]
+                                targets: 5,
+                                className: 'dt-center'
+                            }
+                        ]
                     });
             };
         </script>

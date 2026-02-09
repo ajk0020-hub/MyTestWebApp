@@ -35,6 +35,7 @@ namespace MyTestWebApp
                 {
                     Employee employee = new Employee
                     {
+                        EmployeeId = Convert.ToInt32(reader["EmployeeId"]),
                         FirstName = reader["First Name"].ToString(),
                         LastName = reader["Last Name"].ToString(),
                         Role = reader["Role"].ToString(),
